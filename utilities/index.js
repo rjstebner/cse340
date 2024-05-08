@@ -9,7 +9,6 @@ Util.getNav = async function (req, res, next) {
     let list = "<ul>"
     list += '<li><a href="/" title="Home page">Home</a></li>'
     data.rows.forEach((row) => {
-      console.log(row); // Log the classification_name of each row
     
       list += "<li>";
       list +=
@@ -28,7 +27,7 @@ Util.getNav = async function (req, res, next) {
     return list; // Return the list string
   }
   
-  module.exports = Util
+
 
 
   /* **************************************
@@ -64,3 +63,5 @@ Util.buildClassificationGrid = async function(data){
     return grid
   }
   
+
+  module.exports = Util
