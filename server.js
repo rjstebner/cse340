@@ -26,12 +26,12 @@ app.get("/", baseController.buildHome)
 // inventoryRoute
 app.use("/inv", inventoryRoute)
 
-// Error handling middleware
+app.get('/trigger-error', baseController.triggerError);
+
 app.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).render('error', { error: err });
 });
-
 
 /* ***********************
  * Local Server Information
