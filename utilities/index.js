@@ -63,5 +63,21 @@ Util.buildClassificationGrid = async function(data){
     return grid
   }
   
+  /* **************************************
+  * Build the inventory view HTML
+  * ************************************ */
+  Util.buildInventoryDisplay = async function(data){
+    let display = '<div id="inv-display">';
+    data.forEach(vehicle => {
+        display += '<img src="' + vehicle.inv_image + '" alt="Image of ' + vehicle.inv_make + '">';
+        display += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_year + '</h2>';
+        display += '<p>' + vehicle.inv_description + '</p>';
+        display += '<p>Price: $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>';
+        display += '<p>Miles: ' + vehicle.inv_miles + '</p>';
+        display += '<p>Color: ' + vehicle.inv_color + '</p>';
+    });
+    display += '</div>';
+    return display;
+}
 
   module.exports = Util
