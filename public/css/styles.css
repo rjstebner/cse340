@@ -58,6 +58,10 @@ nav li{
     width: 100%;
     font-size: 1.2rem;
 }
+nav a{
+    color: white;
+    text-decoration: none;
+}
 h1 {
   color: black;
   font-size: 3rem;
@@ -223,7 +227,6 @@ h1 {
   nav li{
     margin: 3%;
   }
-
   .hero-box {
     margin-left: 5%;
     width: 30%;
