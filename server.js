@@ -14,6 +14,8 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const accountRoute = require('./routes/accountRoute');
+
 
 /* ***********************
  * Middleware
@@ -28,6 +30,13 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 
 
@@ -44,6 +53,10 @@ app.get("/", baseController.buildHome)
 // inventoryRoute
 app.use("/inv", inventoryRoute)
 
+// accountRoute
+app.use("/account", accountRoute)
+
+// errorRoute
 app.get('/trigger-error', baseController.triggerError);
 
 app.use(function(err, req, res, next) {
