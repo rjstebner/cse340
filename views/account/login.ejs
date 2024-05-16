@@ -1,7 +1,7 @@
 <body>
     <h1><%= title %></h1>
 
-    <% messages() %>
+    <%- messages() %>
 
     <form action="/account/login" method="post">
         <label for="email">Email:</label>
@@ -11,7 +11,7 @@
         <input type="password" id="password" name="password" required>
 
         <button type="submit">Login</button>
-        <h2>No account? <a href="">Sign-up now</a></h2>
+        <h2>No account? <a href="/account/register">Sign-up now</a></h2>
     </form>
 
 </body>

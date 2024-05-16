@@ -82,4 +82,10 @@ Util.buildClassificationGrid = async function(data){
     return display;
 }
 
+Util.handleErrors = function(fn) {
+  return function(req, res, next) {
+      fn(req, res, next).catch(next);
+  }
+}
+
   module.exports = Util

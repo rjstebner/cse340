@@ -225,6 +225,13 @@ input {
   border-radius: 5px;
   border: 1px solid #ddd;
 }
+input:required {
+  border-left: 3px solid red;
+}
+
+input:valid {
+  border-left: 3px solid green;
+}
 
 button {
   width: 100%;
