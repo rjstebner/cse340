@@ -14,6 +14,12 @@ router.get("/", invController.buildManager);
 router.get("/add-classification", invController.buildAddClassification);
 router.get("/add-inventory", invController.buildAddInventory);
 
+router.post(
+    '/add-inventory',
+    validate.invRules(),
+    validate.invCheck,
+    utilities.handleErrors(invController.addInventory)
+);
 
 router.post(
     '/add-classification',
