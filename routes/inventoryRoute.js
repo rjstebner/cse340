@@ -1,13 +1,24 @@
-// Needed Resources 
-const express = require("express")
-const router = new express.Router() 
-const invController = require("../controllers/invController")
+const express = require('express');
+const router = express.Router();
+const invController = require('../controllers/invController'); // replace with the actual path to your file
+const utilities = require("../utilities/");
+const validate = require('../utilities/validation');
 
-// Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
-
-// Route to build inventory by Product view
 router.get("/detail/:inventoryId", invController.buildByInventoryId);
 
-module.exports = router;
 
+router.get("/", invController.buildManager);
+
+
+router.get("/add-classification", invController.buildAddClassification);
+router.get("/add-inventory", invController.buildAddInventory);
+
+
+router.post(
+    '/add-classification',
+    validate.regRules(),
+    validate.checkData,
+    utilities.handleErrors(invController.addClassification)
+);
+module.exports = router;
