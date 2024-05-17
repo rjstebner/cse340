@@ -49,3 +49,14 @@ async function addInventory(inv_make, inv_model, inv_year, inv_description, inv_
     console.error("addInventory error " + error)
   }
 }
+
+async function addClassification(classification_name) {
+  try {
+    const sql = "INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *"
+    const data = await pool.query(sql, [classification_name])
+    return data.rows
+  }
+  catch (error) {
+    console.error("addClassification error " + error)
+  }
+}
