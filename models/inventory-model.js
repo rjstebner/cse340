@@ -19,13 +19,7 @@ async function getInventoryByClassificationId(classification_id) {
     }
 }
 
-module.exports = {
-  getClassifications,
-  getInventoryByClassificationId,
-  getInventoryByInventoryId,
-  addClassification,
-  addInventory
-}
+
 
 async function getInventoryByInventoryId(inventory_id) {
     try {
@@ -59,4 +53,12 @@ async function addClassification(classification_name) {
   catch (error) {
     console.error("addClassification error " + error)
   }
+}
+
+module.exports = {
+  getClassifications,
+  getInventoryByClassificationId,
+  getInventoryByInventoryId,
+  addClassification,
+  addInventory
 }
