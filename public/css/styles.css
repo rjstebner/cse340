@@ -251,6 +251,21 @@ form h2{
   margin-bottom: 20px;
 
 }
+
+#classificationList {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  font-size: 16px;
+}
+
+#classificationList option {
+  padding: 10px;
+}
+
+
 /*=====================================*/
 /*=====================================*/
 /*======== Media Queries ============= */
