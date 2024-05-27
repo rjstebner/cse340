@@ -8,7 +8,7 @@ const regValidate = require('../utilities/account-validation')
 // Route to handle "My Account" link click
 router.get("/login", utilities.handleErrors(accController.buildLogin))
 router.get('/register', utilities.handleErrors(accController.buildRegister))
-router.get('/', utilities.handleErrors(accController.buildAccManager))
+router.get('/', utilities.checkLogin, utilities.handleErrors(accController.buildAccManager))
 
 // Process the login request
 router.post(

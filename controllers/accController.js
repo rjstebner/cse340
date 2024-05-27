@@ -3,6 +3,7 @@
 * *************************************** */
 const utilities = require('../utilities');
 const accountModel = require('../models/account-model');
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
@@ -108,4 +109,4 @@ async function accountLogin(req, res) {
     })
   }
   
-  module.exports = { buildLogin, buildRegister, registerAccount, accountLogin , buildAccManager}
+  module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccManager}
