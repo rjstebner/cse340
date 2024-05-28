@@ -62,4 +62,23 @@ validate.invCheck = async (req, res, next) => {
     next();
   }
 };
+
+validate.updateCheck = async (req, res, next) => {
+  const errors = validationResult(req);
+  const nav = await utilities.getNav();
+  if (!errors.isEmpty()) {
+    
+    res.render('inventory/edit-inventory', {
+      title: 'EditInventory',
+      errors: errors.array(),
+      nav,
+      invData: req.body,
+      inv_id
+    });
+  } else {
+    next();
+  }
+};
+
+
 module.exports = validate;

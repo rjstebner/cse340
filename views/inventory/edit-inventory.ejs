@@ -1,7 +1,7 @@
 <h1>Edit Vehicle</h1>
 <h1><%- inv_make %> <%- inv_model %></h1>
+
 <form action="/inv/edit-inventory" method="post">
-    <input type="hidden" name="inv_id" value="<%= inv_id %>">
 
     <label for="classification_id">Classification:</label>
     <%- classificationSelect %>
@@ -34,4 +34,7 @@
     <input type="text" id="inv_color" name="inv_color" pattern="[A-Za-z]+" value="<%= inv_color %>" required>
 
     <input type="submit" name="submit" value="Update Vehicle">
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
 </form>

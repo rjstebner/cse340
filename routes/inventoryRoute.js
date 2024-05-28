@@ -33,4 +33,11 @@ router.post(
     validate.checkData,
     utilities.handleErrors(invController.addClassification)
 );
+
+
+router.post(
+    '/edit-inventory',
+    validate.updateCheck,
+    utilities.handleErrors(invController.editInventory)
+);
 module.exports = router;
