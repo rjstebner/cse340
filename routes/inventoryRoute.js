@@ -14,6 +14,12 @@ router.get("/", invController.buildManager);
 router.get("/add-classification", invController.buildAddClassification);
 router.get("/add-inventory", invController.buildAddInventory);
 
+
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
+
+
 router.post(
     '/add-inventory',
     validate.invRules(),
