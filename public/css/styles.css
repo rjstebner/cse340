@@ -121,13 +121,9 @@ margin-left: 10%;
   border: teal 1px solid;
   border-radius: 5px;
 }
-.home-box{
-  font-size: 1.5rem;
+#index-grid-reviews p{
+  font-size: 1.2rem;
 }
-.home-box li{
-  margin-bottom: 10px;
-}
-
 
 
 
