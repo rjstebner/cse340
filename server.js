@@ -13,40 +13,32 @@ app.use(expressLayouts)
 app.set('layout', 'layouts/layout')
 
 // Inventory Routes
-app.get("/", utilities.handleErrors(async (req, res, next) => {
-  
-  // Inventory Routes
-  app.use('/inv', inventoryRoute)
+app.use('/inv', inventoryRoute)
 
-  app.use(static)
+app.use(static)
 
-  // Index Route
-  baseController.buildHome(req, res, next)
+// Index Route
+app.get('/', baseController.buildHome)
 
-  // File Not Found Route - must be last route in list
-  app.use(async (req, res, next) => {
-    next({ status: 404, message: 'Sorry, we appear to have lost that page.' })
-  })
-
-  next()
-}))
-
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({ status: 404, message: 'Sorry, we appear to have lost that page.' })
+})
 
 // Express Error Handler
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
-  res.render("errors/error", {
+  res.render('errors/error', {
     title: err.status || 'Server Error',
-    message,
-    nav
+    message: err.message,
+    nav,
   })
 })
 
 // Local Server Information
-const port = process.env.PORT || 5500
-const host = process.env.HOST || 'localhost'
+const port = process.env.PORT
+const host = process.env.HOST 
 
 // Log statement to confirm server operation
 app.listen(port, host, () => {
