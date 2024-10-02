@@ -125,6 +125,48 @@ margin-left: 10%;
   font-size: 1.2rem;
 }
 
+/*=====================================*/
+/*=====================================*/
+/*========= Inv Display  ============= */
+/*=====================================*/
+/*=====================================*/
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  list-style: none;
+  padding: 10px;
+  width: 90%; /* or any other value that suits your design */
+  margin: auto;
+  justify-self: center;
+}
+.inv-box {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgb(46, 121, 156);
+  padding: 10px;
+  border: black 1px solid;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inv-box a {
+  height: 170px;
+}
+.inv-box a img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.inv-box p {
+  text-align: center;
+  width: 100%;
+}
+
 
 
 /*=====================================*/
