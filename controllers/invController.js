@@ -20,4 +20,26 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 
+invCont.buildByInvId = async function (req, res, next) {
+  try {
+    const inv_id = req.params.invId
+    const data = await invModel.getInventoryByInvId(inv_id)
+    if (!data.length) {
+      return res.status(404).send('No data found for this inventory ID');
+    }
+    const grid = await utilities.buildDetailGrid(data)
+    let nav = await utilities.getNav()
+    const invMake = data[0].inv_make
+    const invName = data[0].inv_model
+    const invYear = data[0].inv_year
+
+    res.render("./inventory/detail", {
+      title: invYear + " " + invMake + " " + invName,
+      nav,
+      grid,
+    })
+  } catch (error) {
+    next(error);
+  }
+}
 module.exports = invCont

@@ -4,12 +4,13 @@
 *:after {
   box-sizing: border-box;
 }
+
 html {
   background-image: url("/images/site/checkerboard.jpg");
   background-size: 400px 400px;
 }
-body{
 
+body {
   width: 80%;
   margin: 0 auto;
   margin-top: 20px;
@@ -17,102 +18,127 @@ body{
   border: solid 10px turquoise;
   border-radius: 5px;
   background-color: white;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  line-height: 1.6;
 }
-#wrapper{
+
+#wrapper {
   max-width: 1080px;
 }
-#top-header{
+
+#top-header {
   max-width: 1080px;
   background-color: #f8f9fa;
   padding: 10px 0;
   border-bottom: 1px solid #e9ecef;
 }
-.siteName{
+
+.siteName {
   font-size: 2rem;
   font-weight: 700;
   color: black;
 }
-.siteName a{
+
+.siteName a {
   text-decoration: none;
   color: black;
 }
-#tools{
-  position:absolute;
+
+#tools {
+  position: absolute;
   top: 40px;
   right: 13%;
   font-size: 1.2rem;
   color: black;
 }
-#tools a{
+
+#tools a {
   color: black;
   text-decoration: none;
 }
-nav{
+
+nav {
   background-color: black;
   color: white;
   padding: 10px 0;
   border-bottom: 1px solid #e9ecef;
 }
-nav ul{
-margin-left: 10%;
+
+nav ul {
+  margin-left: 10%;
 }
-nav li{
+
+nav li {
   display: inline;
   margin-right: 10%;
   width: 100%;
   font-size: 1.2rem;
 }
-nav a{
+
+nav a {
   color: white;
   text-decoration: none;
 }
-h1 {
-color: black;
-font-size: 3rem;
-margin-left: 10%;
+
+nav a:hover {
+  color: #e8491d;
 }
+
+h1 {
+  color: black;
+  font-size: 3rem;
+  margin-left: 10%;
+}
+
 #banner {
   position: relative;
-  display: flex; 
+  display: flex;
   flex-direction: column;
-  background-image: url('/images/vehicles/delorean.jpg'); 
-  background-size: contain; 
-  background-position: center; 
+  background-image: url('/images/vehicles/delorean.jpg');
+  background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
   color: black;
   font-size: 2rem;
   margin-left: 10%;
   width: 80%;
-
 }
+
 #banner-box {
   background-color: rgba(255, 255, 255, 0.5);
   color: rgb(46, 121, 156);
   margin-left: 5%;
   margin: 5px;
-  
   width: 40%;
   height: 65%;
   font-size: 1.3rem;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-#index-grid{
+
+#index-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
   margin-left: 10%;
   margin-right: 10%;
 }
-#index-grid-upgrades{
+
+#index-grid-upgrades {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
   margin-left: 10%;
   margin-right: 10%;
 }
-.index-grid-upgrades-box{
+
+.index-grid-upgrades-box {
   justify-content: center;
 }
-.index-grid-upgrades-box img{
+
+.index-grid-upgrades-box img {
   background-color: turquoise;
   color: white;
   padding: 20px;
@@ -121,14 +147,13 @@ margin-left: 10%;
   border: teal 1px solid;
   border-radius: 5px;
 }
-#index-grid-reviews p{
+
+#index-grid-reviews p {
   font-size: 1.2rem;
 }
 
 /*=====================================*/
-/*=====================================*/
 /*========= Inv Display  ============= */
-/*=====================================*/
 /*=====================================*/
 
 #inv-display {
@@ -137,10 +162,11 @@ margin-left: 10%;
   grid-gap: 20px;
   list-style: none;
   padding: 10px;
-  width: 90%; /* or any other value that suits your design */
+  width: 90%;
   margin: auto;
   justify-self: center;
 }
+
 .inv-box {
   background-color: rgba(255, 255, 255, 0.5);
   color: rgb(46, 121, 156);
@@ -151,11 +177,18 @@ margin-left: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.inv-box:hover {
+  transform: scale(1.05);
 }
 
 .inv-box a {
   height: 170px;
 }
+
 .inv-box a img {
   width: 100%;
   object-fit: cover;
@@ -167,56 +200,150 @@ margin-left: 10%;
   width: 100%;
 }
 
-
-
 /*=====================================*/
+/*========== Product Page =============*/
+/*=====================================*/
+#product-display {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-left: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-img {
+  width: 80%;
+  height: auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.product-details {
+  font-size: 1.3rem;
+  padding: 10px;
+}
+.product-details li {
+  list-style: none;
+}
+
+.product-details h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  margin-bottom: 10px;
+}
+
 /*=====================================*/
 /*======== Media Queries ============= */
 /*=====================================*/
-/*=====================================*/
 
-@media screen and (max-width: 800px){
-  body{
+@media screen and (max-width: 800px) {
+  body {
     width: 90%;
   }
-  #index-grid{
+
+  #index-grid {
     grid-template-columns: 1fr;
   }
-  .index-grid-upgrades-box{
+
+  .index-grid-upgrades-box {
     width: 80%;
   }
-  h1{
+
+  h1 {
     font-size: 2rem;
   }
-  nav ul{
+
+  nav ul {
     margin-left: 5%;
   }
-  nav li{
+
+  nav li {
     margin: 3%;
   }
+
   #banner-box {
     margin-left: 5%;
     width: 30%;
     font-size: 1rem;
     height: 45%;
   }
-  @media screen and (max-width: 600px) {
-    body {
-      width: 100%;
-      margin-top: 0;
-      margin-bottom: 0;
-      border: none;
-    }
-    #tools{
-      top: 10px;
-    }
-    nav ul {
-      margin-left: 0;
-    }
-    .banner-box{
-      width: 40%;
-    }
+  #product-display {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .product-img {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .product-details {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .product-details h2 {
+    font-size: 1.5rem;
+  }
+
+  .product-details p {
+    font-size: 1rem;
+  }
   
-  
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: none;
+  }
+
+  #tools {
+    top: 10px;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+  }
+
+  .banner-box {
+    width: 40%;
+  }
+  #product-display {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    padding: 5px;
+  }
+
+  .product-img {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .product-details {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .product-details h2 {
+    font-size: 1.2rem;
+  }
+
+  .product-details p {
+    font-size: 0.9rem;
   }
 }
