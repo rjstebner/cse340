@@ -1,0 +1,64 @@
+<!-- Content Heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+  <% } else { %>
+    <% res.redirect('/') %>
+  <% } %>
+  
+  <!-- Login Form -->
+  <form action="/account/register" method="POST">
+    <div>
+      <label for="account_firstname">First Name:</label>
+      <input type="text" id="account_firstname" name="account_firstname" required>
+    </div>
+    <div>
+      <label for="account_lastname">Last Name:</label>
+      <input type="text" id="account_lastname" name="account_lastname" required>
+    </div>
+    <div>
+      <label for="account_email">Email:</label>
+      <input 
+        type="email" 
+        id="account_email" 
+        name="account_email" 
+        required 
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+        title="Please enter a valid email address (e.g., user@example.com)">
+    </div>
+    <div>
+      <label for="account_password">Password:</label>
+      <input 
+        type="password" 
+        id="account_password" 
+        name="account_password" 
+        required 
+        pattern="(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{12,}" 
+        title="Password must be at least 12 characters long, contain at least one uppercase letter, one number, and one special character">
+      <button type="button" id="pswBtn">🙈</button>
+    </div>
+    <div>
+      <button type="submit">Register</button>
+    </div>
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pswdBtn = document.querySelector("#pswBtn");
+      pswdBtn.addEventListener("click", function() {
+        const pswdInput = document.getElementById("account_password");
+        const type = pswdInput.getAttribute("type");
+        if (type === "password") {
+          pswdInput.setAttribute("type", "text");
+          pswdBtn.innerHTML = "🙉";
+        } else {
+          pswdInput.setAttribute("type", "password");
+          pswdBtn.innerHTML = "🙈";
+        }
+      });
+    });
+  </script>
+  
+
+  
+  <!-- Message Block -->
+  <%# messages() %>

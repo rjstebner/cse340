@@ -238,6 +238,83 @@ h1 {
 }
 
 /*=====================================*/
+/*======== Accounts page ============= */
+/*=====================================*/
+
+/*========= Login Form ============= */
+
+/* Form Container */
+form {
+  background-color: rgba(100, 174, 206, 0.729);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  box-sizing: border-box;
+  margin-left: 20px;
+}
+
+/* Form Elements */
+form div {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+form input[type="email"]:invalid,
+form input[type="password"]:invalid {
+  border-right: 5px solid red;
+}
+
+form input[type="email"]:valid,
+form input[type="password"]:valid {
+  border-right: 5px solid green;
+}
+
+form button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Registration Link */
+form p {
+  text-align: center;
+}
+
+form p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+form p a:hover {
+  text-decoration: underline;
+}
+/*=====================================*/
 /*======== Media Queries ============= */
 /*=====================================*/
 
