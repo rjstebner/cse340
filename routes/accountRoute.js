@@ -16,5 +16,12 @@ router.post(
     regValidate.checkRegData,
     accController.registerAccount
   )
-
+  router.post(
+    "/login",
+    regValidate.loginRules(),
+    regValidate.checkLoginData,
+    (req, res) => {
+      res.status(200).send('login process')
+    }
+  )
 module.exports = router;
