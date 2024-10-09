@@ -267,7 +267,10 @@ form label {
 
 form input[type="text"],
 form input[type="email"],
-form input[type="password"] {
+form input[type="password"],
+form input[type="number"],
+form select
+{
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -289,7 +292,7 @@ form input[type="password"]:valid {
 form button[type="submit"] {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: black;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -298,7 +301,8 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: white;
+  color: black;
 }
 
 /* Registration Link */
@@ -314,6 +318,14 @@ form p a {
 form p a:hover {
   text-decoration: underline;
 }
+
+.manageText {
+  margin-left: 20px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: rgb(2, 80, 80);
+}
+
 /*=====================================*/
 /*======== Media Queries ============= */
 /*=====================================*/
