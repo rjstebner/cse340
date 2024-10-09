@@ -19,7 +19,6 @@ async function getInventoryByClassificationId(classification_id) {
       WHERE i.classification_id = $1`,
       [classification_id]
     )
-    console.log(`Query result: ${JSON.stringify(data.rows)}`);
     return data.rows
 
   } catch (error) {
@@ -29,7 +28,6 @@ async function getInventoryByClassificationId(classification_id) {
 
 async function getInventoryByInvId(inv_id) {
   try {
-    console.log(`Querying for inv_id: ${inv_id}`);
     const data = await pool.query(
       `SELECT * FROM public.inventory AS i 
       JOIN public.classification AS c 
@@ -38,7 +36,6 @@ async function getInventoryByInvId(inv_id) {
       [inv_id]
     );
 
-    console.log(`Query result: ${JSON.stringify(data.rows)}`);
     return data.rows;
   } catch (error) {
     console.error(`Error executing query: ${error.message}`);

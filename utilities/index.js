@@ -74,7 +74,7 @@ Util.buildDetailGrid = async function(data){
       grid += '</div>'
       grid += '<li><strong>Year:</strong> ' + vehicle.inv_year + '</li>'
       grid += '<li><strong>Color:</strong> ' + vehicle.inv_color + '</li>'
-      grid += '<li><strong>Millieage:</strong> ' + vehicle.inv_millieage + '</li>'
+      grid += '<li><strong>Millieage:</strong> ' + vehicle.inv_miles + '</li>'
       grid += '<li><strong>Description:</strong> ' + vehicle.inv_description + '</li>'
     })
     grid += '</div>'
