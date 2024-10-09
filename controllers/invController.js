@@ -44,4 +44,42 @@ invCont.buildByInvId = async function (req, res, next) {
     next(error);
   }
 }
+
+invCont.ManageInventory = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav()
+    res.render("./inventory/management", {
+      title: "Manage Inventory",
+      nav,
+      errors: null,
+    })
+  } catch (error) {
+    next(error);
+  }
+}
+
+invCont.AddClass = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav()
+    res.render("./inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      errors: null,
+    })
+  } catch (error) {
+    next(error);
+  }
+}
+invCont.AddInventory = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav()
+    res.render("./inventory/add-inventory", {
+      title: "Add Inventory",
+      nav,
+      errors: null,
+    })
+  } catch (error) {
+    next(error);
+  }
+}
 module.exports = invCont
