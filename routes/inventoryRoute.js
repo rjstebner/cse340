@@ -16,4 +16,11 @@ router.post("/addClass",
     invValidate.classificationRules(),
     invValidate.checkClassification,
     invController.processNewClassification);
+
+
+router.post("/addInv",
+    invValidate.inventoryRules(),
+    invValidate.checkInventory,
+    invController.processNewInventory);
+    
 module.exports = router;

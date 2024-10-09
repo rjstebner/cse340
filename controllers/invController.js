@@ -73,9 +73,12 @@ invCont.AddClass = async function (req, res, next) {
 invCont.AddInventory = async function (req, res, next) {
   try {
     let nav = await utilities.getNav()
+    const classifications = await invModel.getClassifications()
+    const form = await utilities.buildInventoryForm(classifications)
     res.render("./inventory/add-inventory", {
       title: "Add Inventory",
       nav,
+      form,
       errors: null,
     })
   } catch (error) {
@@ -96,6 +99,24 @@ invCont.processNewClassification = async function (req, res) {
   } else {
     req.flash("notice", "Sorry, there was an error adding the classification.")
     res.redirect("/inv/addClass")
+  }
+}
+
+
+invCont.processNewInventory = async function (req, res) {
+  let nav = await utilities.getNav()
+
+  const {inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color, classification_id} = req.body
+  let inv_image = "/images/vehicles/no-image.png"
+  let inv_thumbnail = "/images/vehicles/no-image-tn.png"
+  const result = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+
+  if (result.rowCount === 1) {
+    req.flash("notice", "Inventory added successfully.")
+    res.redirect("/inv/")
+  } else {
+    req.flash("notice", "Sorry, there was an error adding the inventory.")
+    res.redirect("/inv/addInv")
   }
 }
 module.exports = invCont
