@@ -82,4 +82,20 @@ invCont.AddInventory = async function (req, res, next) {
     next(error);
   }
 }
+
+// Process the new classification
+
+invCont.processNewClassification = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { classification_name } = req.body
+  const result = await invModel.addClassification(classification_name)
+
+  if (result.rowCount === 1) {
+    req.flash("notice", "Classification added successfully.")
+    res.redirect("/inv/")
+  } else {
+    req.flash("notice", "Sorry, there was an error adding the classification.")
+    res.redirect("/inv/addClass")
+  }
+}
 module.exports = invCont

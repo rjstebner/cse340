@@ -10,5 +10,18 @@
 <!-- Message Block -->
 <%# messages() %>
 
-
-<h1>Hello</h1>
+<form class="invManageForm" action="/inv/addClass" method="POST">
+    <div>
+        <label for="classification_name">Classification Name:</label>
+        <input type="text" 
+        id="classification_name" 
+        name="classification_name" 
+        required 
+        
+        pattern=".*[A-Z]"
+        span="Please enter a valid classification"
+        value="<%= locals.classification_name %>">
+    </div>
+    <div>
+        <button type="submit">Add Classification</button>
+    </div>
