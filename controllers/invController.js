@@ -202,7 +202,6 @@ invCont.updateInventory = async function (req, res) {
 
 invCont.deleteInventoryPage = async function (req, res, next) {
   const inv_id = parseInt(req.params.invId)
-  console.log(req.params)
 
   const data = await invModel.getInventoryByInvId(inv_id)
   let nav = await utilities.getNav()
@@ -227,7 +226,6 @@ invCont.deleteInventoryPage = async function (req, res, next) {
 
 invCont.deleteInventory = async function (req, res) {
   const { inv_id } = req.body
-  console.log(inv_id)
   const result = await invModel.deleteInventory(inv_id)
   if (result) {
     req.flash("notice", "The inventory item was successfully deleted.")
