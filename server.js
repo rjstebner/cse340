@@ -13,10 +13,13 @@ const pool = require('./database')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const accCont = require('./controllers/accController')
+const sessionMiddleware = require('./utilities/sessionMiddleware');
 
 
 
 // Middleware
+
+
 
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
@@ -27,8 +30,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   name: 'sessionId',
-}))
-
+}));
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -43,6 +45,9 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+// Use the session middleware
+app.use(sessionMiddleware);
 
 // Set the view engine and templates
 app.set('view engine', 'ejs')

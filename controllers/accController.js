@@ -14,6 +14,8 @@ accCont.buildDefault = async function(req, res, next) {
     res.render("account/index", {
       title: "Account",
       nav,
+      loggedIn: req.session.loggedIn,
+      clientName: req.session.clientName,
     })
   }
   
@@ -117,13 +119,30 @@ accCont.accountLogin = async function (req, res) {
      } else {
        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
      }
-   return res.redirect("/account/")
+   req.session.loggedIn = true;
+   req.session.clientName = accountData.account_firstname;
+   res.redirect("/account");
+   } else {
+     req.flash("notice", "Please check your credentials and try again.")
+     res.status(400).render("account/login", {
+       title: "Login",
+       nav,
+       errors: null,
+       account_email,
+     })
    }
   } catch (error) {
    return new Error('Access Forbidden')
   }
- }
+}
 
+/* ****************************************
+*  Process logout request
+* ************************************ */
+accCont.accountLogout = function (req, res) {
+  req.session.destroy();
+  res.redirect("/");
+}
 
 
   module.exports = accCont

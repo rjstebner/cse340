@@ -3,11 +3,13 @@ const express = require('express');
 const router = new express.Router();
 const accController = require('../controllers/accController');
 const regValidate = require('../utilities/account-validation');
-const utilities = require('../utilities'); // Correct import
+const utilities = require('../utilities'); 
 
 router.get("/login", accController.buildLogin);
 router.get("/register", accController.buildRegister);
-router.get("/", accController.buildDefault); // Correct usage
+router.get("/", accController.buildDefault);
+router.get("/logout", accController.accountLogout);
+
 
 /* POST */
 router.post(
