@@ -5,13 +5,13 @@ const invController = require('../controllers/invController')
 const invValidate = require('../utilities/inventory-validation')
 const utilities = require('../utilities')
 
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classificationId", invController.getInventoryJSON);
+router.get("/type/:classificationId", invController.buildByClassificationId)
 router.get("/detail/:invId", invController.buildByInvId);
 router.get("/", invController.ManageInventory);
 router.get("/addClass", invController.AddClass);
 router.get("/addInv", invController.AddInventory);
 router.get("/edit/:invId", invController.EditInventory);
-router.get("/update", invController.updateInventory);
 router.get("/delete/:invId", invController.deleteInventoryPage);
 
 /* POST */
