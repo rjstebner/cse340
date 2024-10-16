@@ -115,4 +115,22 @@ validate.checkInventory = async (req, res, next) => {
     }
   }
 
+/**
+ * Validate inventory data
+ * Errors will be directed back to the edit view
+ */
+validate.checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("./inventory/add-inventory", {
+      title: "Add Inventory",
+      nav,
+      errors: errors.array(),
+    })
+  } else {
+    next()
+  }
+}
+
   module.exports = validate;

@@ -11,6 +11,7 @@ router.get("/", invController.ManageInventory);
 router.get("/addClass", invController.AddClass);
 router.get("/addInv", invController.AddInventory);
 router.get("/edit/:invId", invController.EditInventory);
+router.get("/update", invController.updateInventory);
 
 /* POST */
 router.post("/addClass", 
@@ -24,4 +25,7 @@ router.post("/addInv",
     invValidate.checkInventory,
     invController.processNewInventory);
     
+    router.post("/update", 
+        invController.updateInventory)
+
 module.exports = router;

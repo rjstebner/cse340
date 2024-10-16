@@ -11,7 +11,7 @@
 <%# messages() %>
 
 <!-- Form -->
-<<form action="/inv/update" method="post">
+<<form id="updateForm" action="/inv/update" method="post">
  <%- classificationSelect %>
  <div>
   <label for="inv_make">Make:</label>
@@ -59,6 +59,13 @@
   <span id="error-inv_color" class="error-message"></span>
 </div>
 <div>
-    <input type="submit" name="submit" value="Update Vehicle">
+    <button attribute="disabled" type="submit" name="submit" value="Update Vehicle"> Update
 </div>
+<div>
+  <input type="hidden" name="inv_id"
+  <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+  <% } %>>
+
+</div>
+<script src="../../js/inventory.js"></script>
 </form>
