@@ -363,6 +363,10 @@ form p a:hover {
 #inventoryDisplay tr:hover {
   background-color: #b2d8d8; /* Medium Teal */
 }
+
+#updateForm{
+  margin-top: 15px;
+}
 /*=====================================*/
 /*======== Media Queries ============= */
 /*=====================================*/

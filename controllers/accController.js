@@ -11,6 +11,7 @@ const accCont = {}
 * *************************************** */
 accCont.buildDefault = async function(req, res, next) {
     let nav = await utilities.getNav()
+    console.log(req.session.email)
     res.render("account/index", {
       title: "Account",
       nav,
@@ -24,15 +25,21 @@ accCont.buildDefault = async function(req, res, next) {
 *  Deliver login view
 * *************************************** */
 accCont.buildLogin = async function(req, res, next) {
-    let nav = await utilities.getNav()
-    res.render("account/login", {
-      title: "Login",
-      nav,
-      errors: null,
-      
-    })
-  }
+  let nav = await utilities.getNav();
   
+  // Assuming you get the email from the request body
+  const email = req.body.email;
+  
+  // Store the email in the session
+  req.session.email = email;
+  
+  res.render("account/login", {
+    title: "Login",
+    nav,
+    errors: null,
+  });
+}
+
 /* ****************************************
 *  Deliver registration view
 * *************************************** */
@@ -121,6 +128,9 @@ accCont.accountLogin = async function (req, res) {
      }
    req.session.loggedIn = true;
    req.session.clientName = accountData.account_firstname;
+    req.session.email = accountData.account_email;
+    req.session.accountType = accountData.account_type;
+
    res.redirect("/account");
    } else {
      req.flash("notice", "Please check your credentials and try again.")
@@ -135,6 +145,25 @@ accCont.accountLogin = async function (req, res) {
    return new Error('Access Forbidden')
   }
 }
+
+accCont.buildAccManager = async function (req, res) {
+  let nav = await utilities.getNav()
+  let accountData = await accountModel.getAccountByEmail(req.session.email)
+  if (req.session.loggedIn) {
+    res.render("account/account-manage", {
+      title: "Account Manager",
+      nav,
+      loggedIn: req.session.loggedIn,
+      clientName: req.session.clientName,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email
+    })
+  } else {
+    res.redirect("/account/login")
+  }
+} 
+
 
 /* ****************************************
 *  Process logout request

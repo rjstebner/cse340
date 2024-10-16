@@ -9,6 +9,7 @@ router.get("/login", accController.buildLogin);
 router.get("/register", accController.buildRegister);
 router.get("/", accController.buildDefault);
 router.get("/logout", accController.accountLogout);
+router.get("/manage", accController.buildAccManager);
 
 
 /* POST */
