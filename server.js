@@ -6,10 +6,13 @@ const static = require('./routes/static')
 const baseController = require('./controllers/baseController')
 const inventoryRoute = require('./routes/inventoryRoute')
 const accountRoute = require('./routes/accountRoute')
+const accController = require('./controllers/accController')
 const utilities = require('./utilities')
 const session = require('express-session')
 const pool = require('./database')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const accCont = require('./controllers/accController')
 
 
 
@@ -28,6 +31,9 @@ app.use(session({
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 
 // Express Messages Middleware
@@ -52,6 +58,7 @@ app.use('/inv', utilities.handleErrors(inventoryRoute));
 
 // Account Routes
 app.use('/account', utilities.handleErrors(accountRoute));
+app.use('/account/', utilities.checkLogin, utilities.handleErrors(accCont.buildDefault));
 
 app.use(static)
 
