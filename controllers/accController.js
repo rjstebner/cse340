@@ -53,6 +53,116 @@ accCont.buildRegister = async function(req, res, next) {
   }
 
 
+/* ****************************************
+* Update account information
+* *************************************** */
+accCont.updateAccount = async function (req, res) {
+    let nav = await utilities.getNav()
+    const { account_firstname, account_lastname, account_email, account_password } = req.body
+    const accountData = await accountModel.getAccountByEmail(req.session.email)
+    if (!accountData) {
+      req.flash("notice", "Sorry, we couldn't find your account.")
+      res.status(404).render("account/account-manage", {
+        title: "Account Manager",
+        nav,
+        loggedIn: req.session.loggedIn,
+        clientName: req.session.clientName,
+        account_firstname,
+        account_lastname,
+        account_email,
+      })
+      return
+    }
+    const updateResult = await accountModel.updateAccount(
+      account_firstname,
+      account_lastname,
+      account_email,
+      req.session.email = account_email,
+      req.session.clientName = account_firstname
+
+    )
+    if (updateResult) {
+      req.flash("notice", "Your account has been updated.")
+      res.status(200).render("account/account-manage", {
+        title: "Account Manager",
+        nav,
+        loggedIn: req.session.loggedIn,
+        clientName: req.session.clientName,
+        account_firstname,
+        account_lastname,
+        account_email,
+      })
+    } else {
+      req.flash("notice", "Sorry, we couldn't update your account.")
+      res.status(501).render("account/account-manage", {
+        title: "Account Manager",
+        nav,
+        loggedIn: req.session.loggedIn,
+        clientName: req.session.clientName,
+        account_firstname,
+        account_lastname,
+        account_email,
+      })
+    }
+  }
+
+/* ****************************************
+*  Change password
+* *************************************** */
+accCont.changePassword = async function (req, res) {
+    let nav = await utilities.getNav()
+    const { account_password, account_new_password } = req.body
+    const accountData = await accountModel.getAccountByEmail(req.session.email)
+    if (!accountData) {
+      req.flash("notice", "Sorry, we couldn't find your account.")
+      res.status(404).render("account/account-manage", {
+        title: "Account Manager",
+        nav,
+        loggedIn: req.session.loggedIn,
+        clientName: req.session.clientName,
+      })
+      return
+    }
+    try {
+      if (await bcrypt.compare(account_password, accountData.account_password)) {
+        const hashedPassword = await bcrypt.hash(account_new_password, 10)
+        const updateResult = await accountModel.updatePassword(
+          hashedPassword,
+          req.session.email
+        )
+        if (updateResult) {
+          req.flash("notice", "Your password has been updated.")
+          res.status(200).render("account/account-manage", {
+            title: "Account Manager",
+            nav,
+            loggedIn: req.session.loggedIn,
+            clientName: req.session.clientName,
+          })
+        } else {
+          req.flash("notice", "Sorry, we couldn't update your password.")
+          res.status(501).render("account/account-manage", {
+            title: "Account Manager",
+            nav,
+            loggedIn: req.session.loggedIn,
+            clientName: req.session.clientName,
+          })
+        }
+      } else {
+        req.flash("notice", "Sorry, we couldn't update your password.")
+        res.status(501).render("account/account-manage", {
+          title: "Account Manager",
+          nav,
+          loggedIn: req.session.loggedIn,
+          clientName: req.session.clientName,
+        })
+      }
+    } catch (error) {
+      return new Error("Access Forbidden")
+    }
+  }
+  
+
+
   /* ****************************************
 *  Process registration
 * *************************************** */

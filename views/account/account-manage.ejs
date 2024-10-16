@@ -29,10 +29,17 @@
               title="Please enter a valid email address (e.g., user@example.com)">
           </div>
           <div>
+            <input type="hidden" name="account_id"
+            <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %> >
+          
+          </div>
+          <div>
             <button type="submit">Update</button>
           </div>
         </form>
 
+        <h2>Change Password</h2>
+        <p>By entering a new password, this will erase you previous password.</p>
       <form id="updateForm" action="/account/changePass" method="post">
         <div>
             <label for="account_password">Password:</label>
@@ -45,5 +52,31 @@
               title="Password must be at least 12 characters long, contain at least one uppercase letter, one number, and one special character">
           </div>
           <div>
-            <button type="submit">Change Password</button>
+            <input type="hidden" name="account_id"
+            <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %> >
+          
           </div>
+          <div>
+          <button type="button" id="pswBtn">🙈</button>
+        </div>
+        <div>
+          <button type="submit">Change Password</button>
+        </div>
+      </form>
+    
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const pswdBtn = document.querySelector("#pswBtn");
+          pswdBtn.addEventListener("click", function() {
+            const pswdInput = document.getElementById("account_password");
+            const type = pswdInput.getAttribute("type");
+            if (type === "password") {
+              pswdInput.setAttribute("type", "text");
+              pswdBtn.innerHTML = "🙉";
+            } else {
+              pswdInput.setAttribute("type", "password");
+              pswdBtn.innerHTML = "🙈";
+            }
+          });
+        });
+      </script>

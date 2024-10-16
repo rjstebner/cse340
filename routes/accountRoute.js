@@ -25,4 +25,8 @@ router.post(
     regValidate.checkLoginData,
     accController.accountLogin
   )
+
+router.post("/accountUpdate", accController.updateAccount);
+
+router.post("/changePass", accController.changePassword);
 module.exports = router;
