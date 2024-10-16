@@ -110,8 +110,7 @@ Util.buildInventoryForm = async function (classification) {
 
   let classificationList = await Util.buildClassificationList(classification)
 
-  let form = '<form action="/inv/addInv" method="POST" onsubmit="return validateForm()">'
-  + '<div>'
+  let form = '<div class="ClassList">'
   + '    <label for="classification_id">Classification:</label>'
   + classificationList
   + '    <span id="error-classification_id" class="error-message"></span>'

@@ -3,8 +3,9 @@ const express = require('express')
 const router = new express.Router()
 const invController = require('../controllers/invController')
 const invValidate = require('../utilities/inventory-validation')
+const utilities = require('../utilities')
 
-router.get("/type/:classificationId", invController.buildByClassificationId);
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 router.get("/detail/:invId", invController.buildByInvId);
 router.get("/", invController.ManageInventory);
 router.get("/addClass", invController.AddClass);
