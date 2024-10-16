@@ -12,6 +12,7 @@ router.get("/addClass", invController.AddClass);
 router.get("/addInv", invController.AddInventory);
 router.get("/edit/:invId", invController.EditInventory);
 router.get("/update", invController.updateInventory);
+router.get("/delete/:invId", invController.deleteInventoryPage);
 
 /* POST */
 router.post("/addClass", 
@@ -25,7 +26,11 @@ router.post("/addInv",
     invValidate.checkInventory,
     invController.processNewInventory);
     
-    router.post("/update", 
-        invController.updateInventory)
+router.post("/update",
+    invValidate.inventoryRules(),
+    invValidate.checkUpdateData, 
+    invController.updateInventory)
 
+
+router.post("/del", invController.deleteInventory);
 module.exports = router;
