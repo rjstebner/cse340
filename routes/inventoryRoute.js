@@ -10,7 +10,7 @@ router.get("/detail/:invId", invController.buildByInvId);
 router.get("/", invController.ManageInventory);
 router.get("/addClass", invController.AddClass);
 router.get("/addInv", invController.AddInventory);
-
+router.get("/edit/:invId", invController.EditInventory);
 
 /* POST */
 router.post("/addClass", 
