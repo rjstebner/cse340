@@ -312,6 +312,8 @@ accCont.deleteEmployee = async function (req, res) {
 accCont.deleteClient = async function (req, res) {
   try {
     const id = req.params.id;
+    console.log('Deleting id: ' + id);
+
     const result = await accountModel.deleteEmployeeById(id);
 
     if (result) {
