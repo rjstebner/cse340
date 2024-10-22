@@ -274,7 +274,40 @@ accCont.buildAccManager = async function (req, res) {
   }
 } 
 
+/* ****************************************
+*  Get employees
+* *************************************** */
 
+accCont.getEmployees = async function (req, res) {
+  try {
+    let nav = await utilities.getNav();
+    const employees = await accountModel.getEmployees();
+    res.render('account/employee-list', {
+      title: 'Employee List',
+      nav,
+      employees,
+    });
+  } catch (error) {
+    req.flash('notice', 'Error fetching employee data.');
+    res.redirect('/');
+  }
+};
+
+/* ****************************************
+*  Delete employee
+* *************************************** */
+accCont.deleteEmployee = async function (req, res) {
+  console.log("deleteEmployee called with id:", req.params.id); // Add this line
+  const id = req.params.id;
+  const result = await accountModel.deleteEmployeeById(id);
+  if (result) {
+    req.flash("notice", "The employee was successfully deleted.");
+    res.redirect("/account/employees");
+  } else {
+    req.flash("notice", "Sorry, the delete failed.");
+    res.redirect("/account/employees");
+  }
+}
 /* ****************************************
 *  Process logout request
 * ************************************ */

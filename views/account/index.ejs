@@ -20,3 +20,8 @@
       <a href="account/manage" class="manageText">Manage Account</a>
       
   <% } %>
+
+      <% if (locals.accountType === 'Admin') { %>
+        <h3>Employee Management</h3>
+        <a href="account/employees" class="manageText">Manage Employees</a>
+        <% } %>

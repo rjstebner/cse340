@@ -338,7 +338,7 @@ form p a:hover {
   color: rgb(2, 80, 80);
 }
 
-#inventoryDisplay {
+#inventoryDisplay, #employeeDisplay {
   width: 80%;
   border-collapse: collapse;
   margin: 20px;
@@ -346,27 +346,55 @@ form p a:hover {
   text-align: left;
 }
 
-#inventoryDisplay th, #inventoryDisplay td {
+#inventoryDisplay th, #inventoryDisplay td, #employeeDisplay th, #employeeDisplay td {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#inventoryDisplay th {
+#inventoryDisplay th, #employeeDisplay th {
   background-color: #008080; /* Teal */
   color: #ffffff; /* White */
 }
 
-#inventoryDisplay tr:nth-child(even) {
+#inventoryDisplay tr:nth-child(even), #employeeDisplay tr:nth-child(even) {
   background-color: #e0f7f7; /* Light Teal */
 }
 
-#inventoryDisplay tr:hover {
+#inventoryDisplay tr:hover, #employeeDisplay tr:hover {
   background-color: #b2d8d8; /* Medium Teal */
 }
 
 #updateForm{
   margin-top: 15px;
 }
+
+#deleteForm {
+  margin-top: 5px; /* Reduced margin */
+  width: auto; /* Adjust width to fit content */
+  height: auto; /* Adjust height to fit content */
+  display: inline-block; /* Ensure form is inline with other elements */
+  padding: 5px; /* Add some padding to make it smaller */
+}
+
+#deleteBTN {
+  background-color: #ff4d4d; /* Red */
+  color: white;
+  border: none;
+  padding: 12px 24px; /* Increased padding */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem; /* Increased font size */
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#deleteBTN:hover {
+  background-color: #ff1a1a; /* Darker Red */
+}
+
 /*=====================================*/
 /*======== Media Queries ============= */
 /*=====================================*/

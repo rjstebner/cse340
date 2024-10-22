@@ -1,0 +1,33 @@
+<!-- Content Heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+  <% } else { %>
+    <% res.redirect('/') %>
+  <% } %>
+  
+  <body>
+      <table id="employeeDisplay">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% employees.forEach(employee => { %>
+            <tr>
+              <td><%= employee.account_firstname %></td>
+              <td><%= employee.account_lastname %></td>
+              <td><%= employee.account_email %></td>
+              <td>
+                <form id="deleteForm" action="/account/delete/<%= employee.account_id %>" method="POST">
+                  <button id="deleteBTN">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+  </body>

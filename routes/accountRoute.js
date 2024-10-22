@@ -10,6 +10,7 @@ router.get("/register", accController.buildRegister);
 router.get("/", accController.buildDefault);
 router.get("/logout", accController.accountLogout);
 router.get("/manage", accController.buildAccManager);
+router.get('/employees', accController.getEmployees);
 
 
 /* POST */
@@ -27,6 +28,7 @@ router.post(
   )
 
 router.post("/accountUpdate", accController.updateAccount);
+router.post('/delete/:id', accController.deleteEmployee); // Add this line
 
 router.post("/changePass", accController.changePassword);
 module.exports = router;

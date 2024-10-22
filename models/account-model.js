@@ -59,5 +59,32 @@ async function updatePassword(account_password){
   }
 }
 
+/* *****************************
+* Get all employees
+* ***************************** */
 
-  module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, updatePassword }
+async function getEmployees() {
+  try {
+    const sql = "SELECT account_firstname, account_lastname, account_email, account_id FROM account WHERE account_type = 'Employee'";
+    const result = await pool.query(sql);
+    return result.rows;
+  } catch (error) {
+    return error.message;
+  }
+}
+
+/* *****************************
+* Delete employee by id
+* ***************************** */
+
+async function deleteEmployeeById(id) {
+  try {
+    const sql = "DELETE FROM account WHERE account_id = $1";
+    const result = await pool.query(sql, [id]);
+    return result.rowCount;
+  } catch (error) {
+    return error.message;
+  }
+}
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, updatePassword, getEmployees, deleteEmployeeById };
