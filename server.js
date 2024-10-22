@@ -14,6 +14,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const accCont = require('./controllers/accController')
 const sessionMiddleware = require('./utilities/sessionMiddleware');
+const flash = require('connect-flash');
 
 
 
@@ -45,6 +46,8 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+app.use(flash());
 
 // Use the session middleware
 app.use(sessionMiddleware);

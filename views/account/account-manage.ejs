@@ -29,7 +29,7 @@
               title="Please enter a valid email address (e.g., user@example.com)">
           </div>
           <div>
-            <input type="hidden" name="account_id"
+            <input type="text" name="account_id"
             <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %> >
           
           </div>
@@ -63,8 +63,14 @@
           <button type="submit">Change Password</button>
         </div>
       </form>
-    
       
+
+      <% if (locals.accountType === 'Client') { %>
+        <h3>Delete Account</h3>
+        <form id="deleteForm" action="/account/clientDelete/<%= locals.account_id %>" method="POST">
+          <button id="deleteBTN">Delete Account</button>
+        </form>
+      <% } %>
 
 
       <script>

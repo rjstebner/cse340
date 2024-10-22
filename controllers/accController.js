@@ -267,7 +267,8 @@ accCont.buildAccManager = async function (req, res) {
       clientName: req.session.clientName,
       account_firstname: accountData.account_firstname,
       account_lastname: accountData.account_lastname,
-      account_email: accountData.account_email
+      account_email: accountData.account_email,
+      account_id : accountData.account_id
     })
   } else {
     res.redirect("/account/login")
@@ -297,7 +298,6 @@ accCont.getEmployees = async function (req, res) {
 *  Delete employee
 * *************************************** */
 accCont.deleteEmployee = async function (req, res) {
-  console.log("deleteEmployee called with id:", req.params.id); // Add this line
   const id = req.params.id;
   const result = await accountModel.deleteEmployeeById(id);
   if (result) {
@@ -306,6 +306,28 @@ accCont.deleteEmployee = async function (req, res) {
   } else {
     req.flash("notice", "Sorry, the delete failed.");
     res.redirect("/account/employees");
+  }
+}
+
+accCont.deleteClient = async function (req, res) {
+  try {
+    const id = req.params.id;
+    const result = await accountModel.deleteEmployeeById(id);
+
+    if (result) {
+      req.session.destroy((err) => {
+        if (err) {
+          console.error('Session destruction error:', err);
+          return res.redirect("/");
+        }
+        res.redirect("/");
+      });
+    } else {
+      res.redirect("/account/manage");
+    }
+  } catch (error) {
+    console.error('Error deleting client:', error);
+    res.redirect("/account/manage");
   }
 }
 /* ****************************************

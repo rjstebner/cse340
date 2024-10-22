@@ -28,7 +28,8 @@ router.post(
   )
 
 router.post("/accountUpdate", accController.updateAccount);
-router.post('/delete/:id', accController.deleteEmployee); // Add this line
+router.post('/delete/:id', accController.deleteEmployee);
+router.post('/clientDelete/:id', accController.deleteClient); 
 
 router.post("/changePass", accController.changePassword);
 module.exports = router;
