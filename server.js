@@ -20,7 +20,6 @@ const sessionMiddleware = require('./utilities/sessionMiddleware');
 // Middleware
 
 
-
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
